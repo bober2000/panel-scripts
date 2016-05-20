@@ -1,0 +1,17 @@
+{
+"config":
+    {
+	"secure-http":"false"
+    },
+"repositories": [
+        {
+	    "type": "pear",
+	    "url": "https://pear2.php.net"
+        }
+    ],
+    "require": {
+        "paragonie/random_compat": "^1.2",
+        "pear-pear2.php.net/PEAR2_Console_CommandLine":"*",
+	"pear-pear2.php.net/PEAR2_Exception":"*"
+    }
+}
