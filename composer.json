@@ -10,9 +10,11 @@
         }
     ],
     "require": {
-        "simpletest/simpletest":"*",
         "paragonie/random_compat": "^1.2",
         "pear-pear2.php.net/PEAR2_Console_CommandLine":"*",
 	"pear-pear2.php.net/PEAR2_Exception":"*"
+    },
+    "require-dev": {
+        "simpletest/simpletest": "^1.1"
     }
 }
