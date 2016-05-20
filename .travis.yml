@@ -5,4 +5,4 @@ php:
   - hhvm
 install:
   - composer install
-  
+script: php panel-scripts/SimpleTests/test_create_db.php

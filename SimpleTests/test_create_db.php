@@ -1,4 +1,5 @@
 <?php
+require '../config.php';
 class CreateDbTest extends UnitTestCase {
 
     function setUp() { // Метод setUp вызывается каждый раз перед выполнением следующей тестовой функции это удобно для инициализации нужных переменных и пр.
