@@ -70,7 +70,7 @@ try {
         echo "Service unavailable: ".$ex->getMessage()."\n";;
         exit(1);
    }
-   $sql = "GRANT ".$result->options["grant"]." PRIVILEGES ON ".$result->options["db_name"].".* TO `".$result->options["name"]."`@`".$mysql_settings["client"]["host"] ."`";
+   $sql = "GRANT ".$result->options["grant"]." ON ".$result->options["db_name"].".* TO `".$result->options["name"]."`@`".$mysql_settings["client"]["host"] ."`";
    try {
       if ($conn->query($sql) === TRUE) {
         echo "Successfully granted " . $result->options["grant"] ." grants on ".$result->options["db_name"]." db, to database user: `".$result->options["name"]."`@`".$mysql_settings["client"]["host"]."`\n";
