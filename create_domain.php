@@ -130,7 +130,15 @@ try {
    $fixed_domain_tpl = str_replace("%%ip%%", $result->options["address"], $domain_tpl);
    $fixed_domain_tpl = str_replace("%%domain%%", $result->options["name"], $fixed_domain_tpl);
    $fixed_domain_tpl = str_replace("%%user%%", $result->options["owner"], $fixed_domain_tpl);
-   echo $fixed_domain_tpl;
+
+   try {
+     if (($domain_tpl = file_put_contents($filename,$fixed_domain_tpl)) === FALSE) {
+        throw new \Exception ("Can't write to template file");
+    }
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
 
 }
 
