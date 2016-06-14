@@ -96,9 +96,10 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
+   $filename = '/etc/apache2/sites-available/' . $result->options["owner"];
    if (!file_exists($filename)) {
      try {
-       if(! @mkdir('/etc/apache2/sites-available/' . $result->options["owner"], 0755)) {
+       if(! @mkdir($filename, 0755)) {
          $mkdirErrorArray = error_get_last();
          throw new Exception('Cant create directory ' .$mkdirErrorArray['message'], 1);
        }
