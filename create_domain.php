@@ -109,7 +109,7 @@ try {
      }
    }
    try {
-     if(! @copy('templates/apache.template', '/etc/apache2/sites-available/' . $result->options["owner"] . $result->options["name"] . '.conf')) {
+     if(! @copy('templates/apache.template', '/etc/apache2/sites-available/' . $result->options["owner"] . '/' . $result->options["name"] . '.conf')) {
        $mkdirErrorArray = error_get_last();
        throw new Exception('Cant create config file ' .$mkdirErrorArray['message'], 1);
      }
