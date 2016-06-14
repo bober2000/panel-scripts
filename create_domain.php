@@ -117,7 +117,7 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
-
+   echo "test";
 
 }
 
