@@ -108,8 +108,10 @@ try {
          exit(1);
      }
    }
+   unset($filename);
+   $filename = '/etc/apache2/sites-available/' . $result->options["owner"] . '/' . $result->options["name"] . '.conf';
    try {
-     if(! @copy('templates/apache.template', '/etc/apache2/sites-available/' . $result->options["owner"] . '/' . $result->options["name"] . '.conf')) {
+     if(! @copy('templates/apache.template', $filename)) {
        $mkdirErrorArray = error_get_last();
        throw new Exception('Cant create config file ' .$mkdirErrorArray['message'], 1);
      }
@@ -117,7 +119,15 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
-   echo "test";
+   try {
+     if (($domain_tpl = file_get_contents($filename)) === FALSE) {
+        throw new \Exception ("Can't open template file");
+    }
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
+   
 
 }
 
