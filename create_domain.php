@@ -140,6 +140,14 @@ try {
         exit(1);
    }
 
+   try {
+     if (!symlink($filename,"/etc/apache2/sites-enabled/" . $result->options["name"] . ".conf"))
+       throw new \Exception ("Can't create symlink");
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
+
 }
 
 
