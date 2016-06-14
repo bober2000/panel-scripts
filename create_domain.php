@@ -127,7 +127,7 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
-   
+   echo $domain_tpl;
 
 }
 
