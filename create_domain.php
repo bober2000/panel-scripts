@@ -87,7 +87,40 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
+   try {
+     if(! @chown('/home/' . $result->options["owner"] . '/domains/' . $result->options["name"], $result->options["owner"])) {
+       $mkdirErrorArray = error_get_last();
+       throw new Exception('Cant change owner ' .$mkdirErrorArray['message'], 1);
+     }
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
+   if (!file_exists($filename)) {
+     try {
+       if(! @mkdir('/etc/apache2/sites-available/' . $result->options["owner"], 0755)) {
+         $mkdirErrorArray = error_get_last();
+         throw new Exception('Cant create directory ' .$mkdirErrorArray['message'], 1);
+       }
+     } catch (Exception $ex) {
+         echo 'Error: ',  $ex->getMessage(), "\n";
+         exit(1);
+     }
+   }
+   try {
+     if(! @copy('templates/apache.template', '/etc/apache2/sites-available/' . $result->options["owner"] . $result->options["name"] . '.conf')) {
+       $mkdirErrorArray = error_get_last();
+       throw new Exception('Cant create config file ' .$mkdirErrorArray['message'], 1);
+     }
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
+
+
 }
+
+
 catch (Exception $exc) {
    $parser->displayError($exc->getMessage());
 }

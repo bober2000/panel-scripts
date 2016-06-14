@@ -1,0 +1,28 @@
+<VirtualHost %%ip%%:80>
+        ServerName %%domain%%
+        ServerAlias www.%%domain%%
+
+        ServerAdmin webmaster@%%domain%%
+
+        DocumentRoot /home/%%user%%/domains/%%domain%%
+
+        <Directory /home/%%user%%/domains/%%domain%%>
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           Require all granted
+        </Directory>
+
+        <Location />
+          <IfModule mod_deflate.c>
+              AddOutputFilterByType DEFLATE text/html text/plain text/css
+          </IfModule>
+        </Location>
+
+        <IfModule mod_ruid2.c>
+          RMode   config
+          RUidGid %%user%% %%group%%
+        </IfModule>
+
+        ErrorLog /home/%%user%%/domains/logs/%%domain%%.error.log
+        CustomLog /home/%%user%%/domains/logs/%%domain%%.log combined
+</VirtualHost>
