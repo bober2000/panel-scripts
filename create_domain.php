@@ -127,7 +127,10 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
-   echo $domain_tpl;
+   $fixed_domain_tpl = str_replace($domain_tpl,'%%ip%%',$result->options["address"]);
+   $fixed_domain_tpl = str_replace($fixed_domain_tpl,'%%domain%%',$result->options["name"]);
+   $fixed_domain_tpl = str_replace($fixed_domain_tpl,'%%user%%',$result->options["owner"]);
+   echo $fixed_domain_tpl;
 
 }
 
