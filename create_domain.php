@@ -147,6 +147,15 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
+   try {
+     $cmd = escapeshellcmd('service apache2 reload');
+     $gid = exec($cmd . " 2>&1",$aResult, $return_val);
+     if ($return_val<>0)
+        throw new \Exception ("Can't reload Apache");
+   } catch (Exception $ex) {
+        echo 'Error: ',  $ex->getMessage(), "\n";
+        exit(1);
+   }
 
 }
 
