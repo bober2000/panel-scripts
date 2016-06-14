@@ -127,9 +127,9 @@ try {
         echo 'Error: ',  $ex->getMessage(), "\n";
         exit(1);
    }
-   $fixed_domain_tpl = str_replace('%%ip%%',$result->options["address",$domain_tpl]);
-   $fixed_domain_tpl = str_replace('%%domain%%',$result->options["name"],$fixed_domain_tpl);
-   $fixed_domain_tpl = str_replace('%%user%%',$result->options["owner"],$fixed_domain_tpl);
+   $fixed_domain_tpl = str_replace('%%ip%%', $result->options["address"], $domain_tpl]);
+   $fixed_domain_tpl = str_replace('%%domain%%', $result->options["name"], $fixed_domain_tpl);
+   $fixed_domain_tpl = str_replace('%%user%%', $result->options["owner"], $fixed_domain_tpl);
    echo $fixed_domain_tpl;
 
 }
